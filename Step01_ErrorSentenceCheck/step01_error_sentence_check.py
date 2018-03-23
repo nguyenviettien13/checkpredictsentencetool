@@ -1,11 +1,12 @@
 import argparse
 import os
+import string
+
 import numpy as np
 import tensorflow as tf
+
 from data_load import load_source_vocab, load_target_vocab
 from tiengvietkhongdau import tiengvietcodau2tiengvietkhongdau
-import string
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 def load_graph(frozen_graph_filename):
@@ -78,11 +79,11 @@ if __name__ == '__main__':
     x = graph.get_tensor_by_name('prefix/Placeholder:0')
     y = graph.get_tensor_by_name('prefix/Placeholder_1:0')
 
-    input_file_list = os.listdir("../input_data_folder")
-    correctsentence_output_file = open("../result/correct_sentence_result.txt", 'a');
-    wrongsentence_output_file = open("../result/wrong_sentence_result", 'a');
+    input_file_list = os.listdir("input_data_folder")
+    correctsentence_output_file = open("result/correct_sentence_result.txt", 'a');
+    wrongsentence_output_file = open("result/wrong_sentence_result", 'a');
     for filename in input_file_list:
-        with open("../input_data_folder/" + filename, 'r', 5120) as file:
+        with open("input_data_folder/" + filename, 'r', 5120) as file:
             for line in file:
                 caukhongdau = tiengvietcodau2tiengvietkhongdau.convert(line)
                 id = find_index_of_last_leter(caukhongdau)

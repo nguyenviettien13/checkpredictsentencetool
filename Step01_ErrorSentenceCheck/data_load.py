@@ -1,9 +1,11 @@
 from __future__ import print_function
-from hyperparams import Hyperparams as hp
-import tensorflow as tf
-import numpy as np
+
 import codecs
-import re as regex
+
+import numpy as np
+import tensorflow as tf
+
+from hyperparams import Hyperparams as hp
 
 
 def load_source_vocab():
